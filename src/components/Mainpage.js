@@ -3,7 +3,7 @@ import  { Header }  from "./Header";
 import Searchbox from './Searchbox';
 import { StationList } from '../pages/StationList';
 import { Footer } from './Footer';
-import LoadingBar from 'react-top-loading-bar';///////////////////////
+import LoadingBar from 'react-top-loading-bar';
 
 function Mainpage() {
    const [locoid, setLocoid] = useState("");
