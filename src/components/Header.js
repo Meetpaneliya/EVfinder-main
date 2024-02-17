@@ -27,7 +27,7 @@ export const Header = () => {
       </div>
       <div className="group relative">
         <button onClick={() => setHidden(!hidden)} className="flex items-center focus:outline-none">
-          <FaUserCircle className='w-10 h-10 '/>
+          <FaUserCircle className='w-10 h-10 mr-3'/>
         </button>
 
         

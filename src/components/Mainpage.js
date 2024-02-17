@@ -9,7 +9,8 @@ function Mainpage() {
    const [locoid, setLocoid] = useState("");
   const [position, setPosition] = useState({ latitude: null, longitude: null, city:"", lodded:false });
   const [progress, setProgress] = useState(0);
-
+   
+  // window.localStorage.removeItem("isLoggedIn")
   return (
     <div className='Mainpage'>
         <LoadingBar

@@ -10,6 +10,7 @@ export const Firstpage = () => {
    console.log("Current user",user)
    const navigation = useNavigate();
 
+   // window.localStorage.getItem("isLoggedIn",true)
   return (
      <>
         <div className="w-100 mx-auto">
@@ -37,8 +38,7 @@ export const Firstpage = () => {
          {
             isAuthenticated ? (navigation("/mainpage")) : ("")
           }
-      
-                  
+                       
        </div>
      </>
   )
