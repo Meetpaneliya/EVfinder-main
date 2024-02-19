@@ -1,6 +1,7 @@
 /* eslint-disable no-lone-blocks */
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+
 const EvChargingBookingForm = ({ onCountChange}) => {
 
   const navigate = useNavigate();
@@ -14,6 +15,8 @@ const EvChargingBookingForm = ({ onCountChange}) => {
 
   const deletionTime = 5000;
   const totalCount = 5;
+  const Charge = 501;
+  
   // Function to handle form submission
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -30,7 +33,6 @@ const EvChargingBookingForm = ({ onCountChange}) => {
       }
     }, deletionTime);
 
-
   // Reset form fields after submission
   setName('');
   setEmail('');
@@ -40,8 +42,62 @@ const EvChargingBookingForm = ({ onCountChange}) => {
   navigate("/mainpage");
 };
 
+const loadScript = (src) => {
+  return new Promise((resovle) => {
+    const script = document.createElement("script");
+    script.src = src;
+
+    script.onload = () => {
+      resovle(true);
+    };
+
+    script.onerror = () => {
+      resovle(false);
+    };
+
+    document.body.appendChild(script);
+  });
+};
+
+const displayRazorpay = async (amount) => {
+  const res = await loadScript(
+    "https://checkout.razorpay.com/v1/checkout.js"
+  );
+
+  if (!res) {
+    alert("You are offline... Failed to load Razorpay SDK");
+    return;
+  }
+
+  const options = {
+    key: "rzp_test_mpl4mEFOrxfsxU",
+    currency: "INR",
+    amount: amount * 100,
+    name: "Code with Meet Paneliya",
+    description: "Thanks for purchasing",
+    
+    handler: function (response) {
+      alert(response.razorpay_payment_id);
+      alert("Payment Successfully");
+    },
+    prefill: {
+      name: "code with Meet",
+    },
+    modal: {
+      // Make the payment modal responsive
+      ondismiss: function () {
+        alert('Payment window closed');
+      },
+      escape: true,
+      width: Math.min(window.innerWidth - 60, 400), // Adjust as needed
+    },
+  };
+
+  const paymentObject = new window.Razorpay(options);
+  paymentObject.open();
+};
 return (
-  <>
+  <div className=''>
     <div className="max-w-md mx-auto p-6 color-white rounded-md shadow-md mt-20 bg-gray-600">
       <h2 className="text-xl font-semibold mb-4 text-black">EV Charging Station Booking</h2>
       <form onSubmit={handleSubmit}>
@@ -98,6 +154,7 @@ return (
         <button
           type="submit"
           className="block w-full mt-4 bg-blue-500 text-white rounded-md p-2 hover:bg-blue-600 focus:outline-none focus:bg-blue-600"
+          onClick={() => displayRazorpay(Charge)}
         >
           Book Slot
         </button>
@@ -105,9 +162,11 @@ return (
       </form>
     </div>
     {/* <Card cout={count} totalCount={totalCount}/> */}
-  </>
+  </div>
    
 );
 };
 
 export default EvChargingBookingForm;
+
+
