@@ -59,7 +59,8 @@ const loadScript = (src) => {
   });
 };
 
-const displayRazorpay = async (amount) => {
+
+  const displayRazorpay = async (amount) => {
   const res = await loadScript(
     "https://checkout.razorpay.com/v1/checkout.js"
   );
