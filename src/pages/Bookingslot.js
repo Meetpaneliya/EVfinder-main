@@ -1,7 +1,7 @@
 import emailjs from '@emailjs/browser';
+import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
 
 const EvChargingBookingForm = ({ onCountChange }) => {
   const form = useRef();
@@ -12,14 +12,14 @@ const EvChargingBookingForm = ({ onCountChange }) => {
   const [phone, setPhone] = useState('');
   const [date, setDate] = useState('');
   const [time, setTime] = useState('');
-  const [formSubmitted, setFormSubmitted] = useState(false);
   const [count, setCount] = useState(0);
+  const [formsubmitted, setformsubmitted] = useState(false);
+  const [vehicleType, setVehicleType] = useState('2wheeler'); // Default vehicle type
 
   const deletionTime = 5000;
   const totalCount = 5;
-  const Charge = 501;
+  const charge = vehicleType === '2wheeler' ? 201 : 501; // Set charge based on vehicle type
 
-  // Function to handle form submission
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -33,61 +33,7 @@ const EvChargingBookingForm = ({ onCountChange }) => {
         onCountChange({ count: count - 1 });
       }
     }, deletionTime);
-    setFormSubmitted(true);
-
-    const service_id = 'service_ofpkqxm';
-    const template_id = 'template_zzznf2q';
-    const publicKey = 'WY3vuzq7SgXRPvWeV';
-    // Create email message template
-    const message = `
-  Subject: Confirmation of Your EV Charging Station Booking
-
-  Dear ${name},
-
-  Thank you for choosing our EV Charging Station Finder service. We have received your booking details and are excited to assist you in finding the perfect charging station for your electric vehicle.
-
-  Below are the details of your booking:
-
-  - Name: ${name}
-  - Email: ${email}
-  - Phone: ${phone}
-  - Date: ${date}
-  - Time: ${time}
-
-  Our team will promptly process your booking and get back to you with the recommended charging station options based on your preferences.
-
-  If you have any further questions or need assistance, please feel free to contact us at 7854625841.
-
-  Thank you again for choosing our service.
-
-  Best regards,
-  Meet Paneliya
-  Plug&Tuge
-`;
-
-    //create an objectwith Emailjs
-
-    //create template for Emailhandler
-    const teplateParams = {
-      from_name: name,
-      from_email: email,
-      to_name: 'meet',
-      message: message
-    };
-
-    emailjs.send(service_id, template_id, teplateParams, publicKey)
-      .then((response) => {
-        console.log('email sent successfully!', response);
-        setName('');
-        setEmail('');
-        setPhone('');
-        setDate('');
-        setTime('');
-      })
-      .catch((error) => {
-        console.log('error sending email:', error);
-      });
-    console.log('Form submitted:', { name, email, phone, date, time });
+    setformsubmitted(true);
   };
 
   const loadScript = (src) => {
@@ -133,18 +79,72 @@ const EvChargingBookingForm = ({ onCountChange }) => {
         name: "code with Meet",
       },
       modal: {
-        // Make the payment modal responsive
         ondismiss: function () {
           alert('Payment window closed');
         },
         escape: true,
-        width: Math.min(window.innerWidth - 60, 400), // Adjust as needed
+        width: Math.min(window.innerWidth - 60, 400),
       },
     };
 
     const paymentObject = new window.Razorpay(options);
     paymentObject.open();
+
+    const service_id = 'service_ofpkqxm';
+    const template_id = 'template_zzznf2q';
+    const publicKey = 'WY3vuzq7SgXRPvWeV';
+
+    const message = `
+      Subject: Confirmation of Your EV Charging Station Booking
+
+      Dear ${name},
+
+      Thank you for choosing our EV Charging Station Finder service. We have received your booking details and are excited to assist you in finding the perfect charging station for your electric vehicle.
+
+      Below are the details of your booking:
+
+      - Name: ${name}
+      - Email: ${email}
+      - Phone: ${phone}
+      - Date: ${date}
+      - Time: ${time}
+      - vehicleType: ${vehicleType}
+
+      ${charge} Payment Successfully !!
+
+      Our team will promptly process your booking and get back to you with the recommended charging station options based on your preferences.
+
+      If you have any further questions or need assistance, please feel free to contact us at 7854625841.
+
+      Thank you again for choosing our service.
+
+      Best regards,
+      Meet Paneliya
+      Plug&Tuge
+    `;
+
+    const templateParams = {
+      from_name: name,
+      from_email: email,
+      to_name: 'meet',
+      message: message
+    };
+
+    emailjs.send(service_id, template_id, templateParams, publicKey)
+      .then((response) => {
+        console.log('email sent successfully!', response);
+        setName('');
+        setEmail('');
+        setPhone('');
+        setDate('');
+        setTime('');
+        setVehicleType('2wheeler');
+      })
+      .catch((error) => {
+        console.log('error sending email:', error);
+      });
   };
+
 
   return (
     <div>
@@ -202,6 +202,19 @@ const EvChargingBookingForm = ({ onCountChange }) => {
             />
           </label>
 
+          <label className="block mb-2">
+            <span className="text-gray-900">Vehicle Type:</span>
+            <select
+              value={vehicleType}
+              onChange={(e) => setVehicleType(e.target.value)}
+              required
+              className="block w-full mt-1 p-2 border rounded-md focus:outline-none focus:border-blue-500 bg-slate-400"
+            >
+              <option value="2wheeler">2 Wheeler</option>
+              <option value="4wheeler">4 Wheeler</option>
+            </select>
+          </label>
+
           <button
             type="submit"
             className="block w-full mt-4 bg-blue-500 text-white rounded-md p-2 hover:bg-blue-600 focus:outline-none focus:bg-blue-600"
@@ -209,9 +222,9 @@ const EvChargingBookingForm = ({ onCountChange }) => {
             Book Slot
           </button>
 
-          {formSubmitted && (<button
+          {formsubmitted && (<button
             className="block w-full mt-4 bg-blue-500 text-white rounded-md p-2 hover:bg-blue-600 focus:outline-none focus:bg-blue-600"
-            onClick={() => displayRazorpay(Charge)}
+            onClick={() => displayRazorpay(charge)}
           >
             Pay Now
           </button>)}

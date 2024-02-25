@@ -59,7 +59,7 @@ export const Footer = () => {
                                         <a href="https://github.com/Meetpaneliya/EVfinder-main" target="_blank" className="hover:underline">Github</a>
                                     </li>
                                     <li>
-                                        <a href="https://www.instagram.com/harshmungra255/" target="_blank" className="hover:underline">Instagram</a>
+                                        <a href="" target="_blank" className="hover:underline">Instagram</a>
                                     </li>
                                 </ul>
                             </div>

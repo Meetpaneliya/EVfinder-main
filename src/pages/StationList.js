@@ -9,7 +9,7 @@ export const StationList = ({locoid,position}) => {
            <div className="flex justify-center flex-wrap other:justify-evenly">
            {locoid==="" ? ( 
             evjson.map((i) => (
-              <Card  key={i.id} station={i} position={position}/>  
+              <Card  key={i.id} station={i} position={position}/>
            )) 
            ):(
             evjson.map((i) => (
