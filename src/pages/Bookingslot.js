@@ -71,7 +71,7 @@ const EvChargingBookingForm = ({ onCountChange }) => {
       description: "Thanks for purchasing",
 
       handler: function (response) {
-        alert( "Your Payment id: ", response.razorpay_payment_id);
+        alert(response.razorpay_payment_id);
         alert("Payment Successfully");
         navigate("/mainpage");
       },
@@ -132,7 +132,6 @@ const EvChargingBookingForm = ({ onCountChange }) => {
     emailjs.send(service_id, template_id, templateParams, publicKey)
       .then((response) => {
         console.log('email sent successfully!', response);
-        console.log("",templateParams)
         setName('');
         setEmail('');
         setPhone('');
