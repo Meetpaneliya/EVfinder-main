@@ -123,15 +123,16 @@ const EvChargingBookingForm = ({ onCountChange }) => {
     `;
 
     const templateParams = {
-      from_name: name,
-      from_email: "Plug&Tug",
-      to_name: uemail,
+      from_name: "Plug&Tug",
+      from_email: "plugtug.team404@gmail.com",
+      to_email: uemail,
       message: message
     };
 
     emailjs.send(service_id, template_id, templateParams, publicKey)
       .then((response) => {
         console.log('email sent successfully!', response);
+        console.log("",templateParams)
         setName('');
         setEmail('');
         setPhone('');
