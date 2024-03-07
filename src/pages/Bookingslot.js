@@ -119,7 +119,6 @@ const EvChargingBookingForm = ({ onCountChange }) => {
       Thank you again for choosing our service.
 
       Best regards,
-      Meet Paneliya
       Plug&Tuge
     `;
 
