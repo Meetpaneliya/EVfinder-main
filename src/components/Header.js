@@ -42,10 +42,10 @@ export const Header = () => {
             )
          }
 
-            <hr className="my-1" />
+            {/* <hr className="my-1" />
 
           <a to="#" className="block py-1 cursor-pointer">Profile</a>
-          <a to="#" className="block py-1 cursor-pointer">Settings</a>
+          <a to="#" className="block py-1 cursor-pointer">Settings</a> */}
           <hr className="my-1" />
 
           {

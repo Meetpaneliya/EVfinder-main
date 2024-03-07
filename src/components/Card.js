@@ -10,7 +10,7 @@ export const Card = ({ station, position}) => {
 
     return (
         <>
-            <div className="max-w-xs max-h-max m-3 p-6 bg-white border border-gray-200 rounded-lg shadow  dark:bg-gray-800 dark:border-gray-700">
+            <div className="max-w-xs  m-3 p-6 bg-white border border-gray-200 rounded-lg shadow  dark:bg-gray-800 dark:border-gray-700">
 
                 <img src={station.image} className="size-50 rounded-lg"></img>
 
@@ -18,8 +18,6 @@ export const Card = ({ station, position}) => {
                     <p className="mb-2 text-2xl text-wrap font-bold tracking-tight text-gray-900 dark:text-white">{station.name}</p>
 
                     <p className="mb-3 font-normal text-wrap text-gray-700 dark:text-gray-400">{station.address}</p>
-
-                    {/* <p>Connection: {count} out of {totalCount}</p> */}
 
                     <div>
                         <a href={position.lodded ? dir : pin} target={'_blank'} className="inline-flex items-center px-3 py-2 text-sm font-medium text-center

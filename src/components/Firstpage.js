@@ -1,4 +1,4 @@
-import logo1 from "../assets/EV-logo.png"
+import logo1 from "../assets/NewProject.png"
 import logo2 from "../assets/RRevstation.png";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useNavigate } from "react-router-dom";
@@ -13,9 +13,9 @@ export const Firstpage = () => {
    // window.localStorage.getItem("isLoggedIn",true)
   return (
      <>
-        <div className="w-100 mx-auto">
+        <div className="w-90 mx-auto h-90">
             <div>
-               <img src={logo1} alt='logo' className='w-50 mx-auto h-20 object-contain'/>
+               <img src={logo1} alt='logo' className='w-9/12 mx-auto h-9/12 pt-9 object-contain'/>
             </div>
            
             <div>
@@ -31,7 +31,7 @@ export const Firstpage = () => {
             </div>
                
          
-         <div className='flex bg-green-600 w-64 h-11 mt-7 mx-auto rounded-3xl'>
+         <div className='flex bg-gray-700 w-64 h-11 mt-7 text-white mx-auto rounded-3xl'>
                  <button onClick = {() => loginWithRedirect()} className="mx-auto">Get Started</button>
          </div>
 

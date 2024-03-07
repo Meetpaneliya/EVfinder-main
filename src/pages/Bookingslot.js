@@ -67,16 +67,16 @@ const EvChargingBookingForm = ({ onCountChange }) => {
       key: "rzp_test_mpl4mEFOrxfsxU",
       currency: "INR",
       amount: amount * 100,
-      name: "Code with Meet Paneliya",
+      name: "Thanks For Working With Team 404",
       description: "Thanks for purchasing",
 
       handler: function (response) {
-        alert(response.razorpay_payment_id);
+        alert( "Your Payment id: ", response.razorpay_payment_id);
         alert("Payment Successfully");
         navigate("/mainpage");
       },
       prefill: {
-        name: "code with Meet",
+        name: "pay with team 404",
       },
       modal: {
         ondismiss: function () {
@@ -126,7 +126,7 @@ const EvChargingBookingForm = ({ onCountChange }) => {
     const templateParams = {
       from_name: name,
       from_email: email,
-      to_name: 'meet',
+      to_name: 'Team 404',
       message: message
     };
 
@@ -147,7 +147,7 @@ const EvChargingBookingForm = ({ onCountChange }) => {
 
 
   return (
-    <div>
+    <div className='bg-gray-600'>
       <div className="mx-auto p-6 rounded-md shadow-md mt-20 bg-gray-600">
         <h2 className="text-xl font-semibold mb-4 text-black">EV Charging Station Booking</h2>
         <form ref={form} onSubmit={handleSubmit}>

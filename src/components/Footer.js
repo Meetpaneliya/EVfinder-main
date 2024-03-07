@@ -67,7 +67,7 @@ export const Footer = () => {
                     </div>
                     <hr className="my-6  w-full border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
                     <div className="sm:flex sm:items-center sm:justify-between">
-                        <span className="text-sm text-gray-500 sm:text-center dark:text-gray-400">Made with ❤️ Meet Paneliya © 2024 Ev-charging station </span>
+                        <span className="text-sm text-gray-500 sm:text-center dark:text-gray-400">Made with ❤️ Team 404  © 2024 Ev-charging station </span>
                         <div className="flex mt-4 sm:justify-center sm:mt-0">
                             <a to="#" className="text-gray-500 hover:text-gray-900 dark:hover:text-white">
                                 <svg className="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 8 19">
