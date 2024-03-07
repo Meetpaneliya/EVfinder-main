@@ -8,7 +8,7 @@ const EvChargingBookingForm = ({ onCountChange }) => {
   const navigate = useNavigate();
 
   const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
+  const [uemail, setEmail] = useState('');
   const [phone, setPhone] = useState('');
   const [date, setDate] = useState('');
   const [time, setTime] = useState('');
@@ -104,7 +104,7 @@ const EvChargingBookingForm = ({ onCountChange }) => {
       Below are the details of your booking:
 
       - Name: ${name}
-      - Email: ${email}
+      - Email: ${uemail}
       - Phone: ${phone}
       - Date: ${date}
       - Time: ${time}
@@ -125,8 +125,8 @@ const EvChargingBookingForm = ({ onCountChange }) => {
 
     const templateParams = {
       from_name: name,
-      from_email: email,
-      to_name: 'Team 404',
+      from_email: "Plug&Tug",
+      to_name: uemail,
       message: message
     };
 
@@ -165,7 +165,7 @@ const EvChargingBookingForm = ({ onCountChange }) => {
             <span className="text-gray-900">Email:</span>
             <input
               type="email"
-              value={email}
+              value={uemail}
               onChange={(e) => setEmail(e.target.value)}
               required
               className="block w-full mt-1 p-2 border rounded-md focus:outline-none focus:border-blue-500 bg-slate-400"
